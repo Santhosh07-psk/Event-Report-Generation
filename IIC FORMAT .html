@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>IIC Format </h2>
+        <form id="userForm" >
+
+            <!-- input lables and text boxes -->
+                <label for="dname"> Department Name :</label>
+                <input type="text" id="dname" name="dname" required><br>
+
+                <label for="title">Name of the Event :</label>
+                <input type="text" id="title" name="title" ><br>
+
+                <label for="fromDate">From Date:</label>
+                <input type="date" id="fromDate" name="fromDate" max="" required><br>
+                <label for="toDate">To Date:</label>
+                <input type="date" id="toDate" name="toDate" max="" required>
+
+                <label for="participants">Number of Participants:</label>
+                <input type="number" id="participants" name="participants" min="1" required><br>
+
+                <label for="report">Report  :</label>
+                <textarea id="report" name = "report" rows="4" required></textarea><br>
+
+                <label for="photo"><B>Upload Photographs:</B></label><br>
+                <label for="photo">Upload Invitation / Poster</label>
+                <input type="file" id="photo1" name="photo1" accept="image/*" required><br>
+
+                <label for="photo">Upload Image1 :</label>
+                <input type="file" id="photo2" name="photo2" accept="image/*" required><br>
+
+                <label for="photo">Upload Image2 :</label>
+                <input type="file" id="photo3" name="photo3" accept="image/*" required><br>
+            
+                <label for="photo">Upload Image2 :</label>
+                <input type="file" id="photo4" name="photo4" accept="image/*" required><br>
+                <!-- Save button creation -->
+                <div class="buttons">
+                <button type="button" id="saveBtn">Save</button>
+                
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Set max attribute to today's date
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('fromDate').setAttribute('max', today);
+        document.getElementById('toDate').setAttribute('max', today);
+    </script>
+
+   
+    <script>
+        // Assuming userData.fromDate and userData.toDate are strings in ISO format (YYYY-MM-DD)
+        const userData = {
+            fromDate: "2024-03-01",
+            toDate: "2024-03-15"
+        };
+    
+        // Function to format date as "dd-mm-yy"
+        function formatDate(dateString) {
+            const [year, month, day] = dateString.split('-');
+            return `${day}-${month}-${year.slice(2)}`;
+        }
+    
+        // Format dates
+        const fromDateFormatted = formatDate(userData.fromDate);
+        const toDateFormatted = formatDate(userData.toDate);
+    
+        // Insert formatted dates into HTML
+        document.getElementById('fromDate').textContent = fromDateFormatted;
+        document.getElementById('toDate').textContent = toDateFormatted;
+    </script>
+    
+    <script src="IICFORMAT.JS"></script>
+</body>
+</html>

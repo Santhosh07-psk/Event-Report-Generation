@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Report Generation</title>
+    <link rel="stylesheet" href="format2.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Event Report Generation</h2>
+        <form id="userForm">
+
+            <!-- input lables and text boxes -->
+            <label for="deptName">Department Name :</label>
+            <input type="text" id="deptName" name="deptName" required><br>
+
+            <label for="eventName">Event Title :</label>
+            <input type="text" id="eventName" name="eventName" required><br>
+
+            <label for="eventDate">Event Date :</label>
+            <input type="date" id="eventDate" name="eventDate" required><br>
+           
+            <label for="Name of ResourcePerson ">Name of Resource Person :</label>
+            <input type="text" id="rpname" name="rpname" required><br>
+
+            <label for="address">Address :</label>
+            <input type="text" id="address" name="address" required>
+            <p id="wordCountMessage" style="color: red;"></p>
+
+            <label for="Mobile No">Mobile No :</label><br>
+            <input type="text" id="number" name="number" required onkeypress="return isNumberKey(event)"><br>
+
+            <label for="caption">Resource Person Addressing Caption :</label>
+            <input type="text" id="caption" name="caption" required>
+            <span id="captionWordCountMessage" style="color: red;"></span><br>
+
+            <label for="rphoto">Resource Person Photo :</label>
+            <input type="file" id="rphoto" name="rphoto" accept="image/*" required><br>
+
+            <label for="invitation">Invitation :</label>
+            <input type="file" id="invitation" name="invitation" accept="image/*" required><br>
+
+            <label for="rpaddress">Resource Person Addressing Photo :</label>
+            <input type="file" id="rpaddress" name="rpaddress" accept="image/*" required>
+            <p id="fileNameMessage" style="color: red;"></p><br>
+
+                <!-- Save button creation -->
+            <div class="buttons">
+                <button type="button" id="saveBtn">Save</button>
+            </div>
+        </form>
+    </div>
+
+
+    <script>
+        // Set max attribute to today's date
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('eventDate').setAttribute('max', today);
+    </script>
+
+    <script>
+        // Function to allow only numbers to be entered and restrict the length to 10 digits
+            function isNumberKey(evt) {
+           var input = document.getElementById("number");
+           
+           // Get the key code of the pressed key
+           var charCode = (evt.which) ? evt.which : evt.keyCode;
+           
+           // Check if the key is a number (ASCII 48-57) and input length is less than 10
+           if (charCode > 31 && (charCode < 48 || charCode > 57) || input.value.length >= 10) {
+               evt.preventDefault(); // Stop the key press if it's not a number or length is 10 or more
+               return false;
+           }
+           return true;
+       }
+       
+       // Function to validate if the input is 10 digits long
+       function validatePhoneNumber() {
+           var number = document.getElementById("number").value;
+           if (number.length !== 10) {
+               alert("Please enter a 10-digit phone number.");
+               return false;
+           }
+           return true;
+       }
+   </script>
+   
+    <script>
+        document.getElementById('caption').addEventListener('input', function () {
+            const maxWords = 30; // Total words limit including spaces
+            const inputField = document.getElementById('caption');
+            const wordCountMessage = document.getElementById('captionWordCountMessage');
+    
+            // Count the total words, including spaces
+            const words = inputField.value.trim().split(/\s+/);
+    
+            // Check if the number of words (including spaces) exceeds the limit
+            if (words.length > maxWords) {
+                // Trim the input to only include the allowed number of words
+                inputField.value = words.slice(0, maxWords).join(' ');
+                wordCountMessage.textContent = "Only 30 words (including spaces) are allowed.";
+            } else {
+                wordCountMessage.textContent = ""; // Clear the message if within limit
+            }
+        });
+    
+        // Prevent further typing if the word limit is reached
+        document.getElementById('caption').addEventListener('keydown', function (event) {
+            const maxWords = 30;
+            const inputField = document.getElementById('caption');
+            const words = inputField.value.trim().split(/\s+/);
+    
+            if (words.length >= maxWords && event.key !== 'Backspace' && event.key !== 'Delete') {
+                event.preventDefault(); // Stop further input
+            }
+        });
+    </script>
+
+    <script>
+     document.getElementById('address').addEventListener('input', function () {
+    const maxWords = 20; // Total words limit including spaces
+    const inputField = document.getElementById('address');
+    const wordCountMessage = document.getElementById('wordCountMessage');
+
+    // Count the total words, including spaces
+    const words = inputField.value.trim().split(/\s+/);
+
+    // Check if the number of words (including spaces) exceeds the limit
+    if (words.length > maxWords) {
+        // Trim the input to only include the allowed number of words
+        inputField.value = words.slice(0, maxWords).join(' ');
+        wordCountMessage.textContent = "Only 20 words (including spaces) are allowed.";
+    } else {
+        wordCountMessage.textContent = ""; // Clear the message if within limit
+    }
+});
+
+// Prevent further typing if the word limit is reached
+document.getElementById('address').addEventListener('keydown', function (event) {
+    const maxWords = 20;
+    const inputField = document.getElementById('address');
+    const words = inputField.value.trim().split(/\s+/);
+
+    if (words.length >= maxWords && event.key !== 'Backspace' && event.key !== 'Delete') {
+        event.preventDefault(); // Stop further input
+    }
+});
+    </script>
+
+   
+
+    <script>
+        // Assuming userData.fromDate is a string in ISO format (YYYY-MM-DD)
+const userData = {
+    fromDate: "2024-03-01",
+};
+
+// Function to format date as "day month year"
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const options = { day: 'numeric', month: 'long', year: 'numeric' };
+    return date.toLocaleDateString('en-GB', options);
+}
+
+// Format dates
+const fromDateFormatted = formatDate(userData.fromDate);
+
+// Insert formatted date into HTML
+document.getElementById('eventDate').textContent = fromDateFormatted;
+    </script>
+
+     <script src="FORMAT2SAMPLE.js"></script>
+    
+</body>
+</html>

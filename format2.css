@@ -1,0 +1,82 @@
+.container {
+    width: 50%;
+    margin: 50px auto;
+    padding: 20px;
+    border: 2px solid #FF4B2B;
+    border-radius: 5px;
+    background-color: #e3e3f3bb;
+}
+
+h2 {
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+   
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+select,
+textarea,
+input[type="file"],
+input[type="number"],
+input[type="Date"]
+{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 2px solid #FF4B2B;
+    border-radius: 3px;
+}
+
+button#addCoordinatorBtn {
+    background-color: #FF4B2B; /* Green background */
+    border: none;
+    color: white; /* White text */
+    padding: 10px 15px; /* Padding */
+    text-align: center; /* Center text */
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px; /* Font size */
+    margin: 4px 2px; /* Margin */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 10px; /* Rounded corners */
+  }
+  
+  /* Center the button */
+  .button-container {
+    text-align: center;
+  }
+  
+
+button#saveBtn {
+    background-color: #FF4B2B;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+    
+}
+
+
+.buttons{
+    text-align: center;
+}
+
+
+
